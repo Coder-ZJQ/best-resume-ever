@@ -4,6 +4,18 @@
     <div class="shadow"></div>
     <div class="heading" id="myselfpic">
     </div>
+    <div class="section-headline" style="margin-bottom:5px; margin-top:15px">
+      <h2>{{person.name.first}} {{person.name.middle}} {{person.name.last}}</h2>
+    </div>
+    <div class="text-small">{{person.position}}</div>
+    <hr style="margin-top:20px; height:1px; border:none; border-top:1px dashed;" width="90%"></hr>
+    <div class="section-headline">
+      {{ lang.about }}
+    </div>
+    <div class="text-small">
+      {{person.about}}
+    </div>
+    <hr style="margin-top:20px; height:1px; border:none; border-top:1px dashed;" width="90%"></hr>
     <div class="section-headline">
       {{ lang.contact }}
     </div>
@@ -11,7 +23,7 @@
       <div class="icon">
         <i class="material-icons">account_circle</i>
       </div>
-      <div class="text">
+      <div style='padding-top:4px;' class="text">
         <ul>
           <li> {{ lang.born }} {{person.birth.year}} {{ lang.bornIn }} {{person.birth.location}}</li>
         </ul>
@@ -22,7 +34,7 @@
       <div class="icon">
         <i class="material-icons">location_city</i>
       </div>
-      <div class="text">
+      <div style='padding-top:4px;' class="text">
         <ul>
           <li>{{person.contact.street}}</li>
           <li>{{person.contact.city}}</li>
@@ -35,7 +47,7 @@
         <div class="icon">
           <i class="material-icons">phone</i>
         </div>
-        <div class="text">
+        <div style='padding-top:4px;' class="text">
           {{person.contact.phone}}
         </div>
       </div>
@@ -46,7 +58,7 @@
         <div class="icon">
           <i class="material-icons">email</i>
         </div>
-        <div class="text">
+        <div style='padding-top:4px;' class="text">
           {{person.contact.email}}
         </div>
       </div>
@@ -57,9 +69,8 @@
         <div class="icon">
           <i class="fa fa-github"></i>
         </div>
-        <div class="text">
-          <span>@{{person.contact.github}}</span>
-          <span>github.com/{{person.contact.github}}</span>
+        <div style='padding-top:4px;' class="text">
+          <span>https://github.com/{{person.contact.github}}</span>
         </div>
       </div>
     </a>
@@ -69,35 +80,14 @@
         <div class="icon">
           <i class="material-icons">language</i>
         </div>
-        <div class="text">
+        <div style='padding-top:4px;' class="text">
           <span>{{person.contact.website}}</span>
         </div>
       </div>
     </a>
-
-    <div class="item last">
-      <div class="section-headline">
-        {{ lang.skills }}
-      </div>
-      <div class="skill" v-for="skill in person.skills" :key="skill.name">
-        <div class="right">
-          <span>{{skill.name}}&nbsp;</span>
-          <div class="progress">
-            <div class="determinate" :style="'width: '+skill.level+'%;'">
-              <i class="fa fa-circle"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="rightCol">
-    <div class="title">
-      <h2>{{person.name.first}} {{person.name.middle}} {{person.name.last}}</h2>
-      <div>{{person.position}}</div>
-    </div>
-
     <div class="section-headline">{{ lang.experience }}</div>
     <div class="block" v-for="experience in person.experience" :key="experience.company">
       <div class="block-helper"></div>
@@ -106,6 +96,16 @@
         <p class="info">
           {{experience.description}}
         </p>
+    </div>
+    <div class="section-headline">{{ "GitHub 项目" }}</div>
+    <div class="block" v-for="project in person.projects" :key="project.name">
+      <div class="block-helper"></div>
+      <a style='text-decoration:none;' v-if="project.url" :href="project.url" target="_blank">
+        <h3 class="headline">{{project.name}}</h3>
+      </a>
+      <p class="info">
+        {{project.description}}
+      </p>
     </div>
     <div class="section-headline">{{ lang.education }}</div>
     <div class="block" v-for="education in person.education" :key="education.degree">
@@ -190,15 +190,20 @@ a {
   }
 }
 .section-headline {
-  text-transform:uppercase;
   font-weight:500;
   letter-spacing:3px;
+  font-size:12pt;
+  opacity:0.8;
+  margin-left:20px;
+  margin-top:30px;
+  margin-bottom:20px;
+  color:#3f3d3c;
+}
+.text-small {
   font-size:10pt;
   opacity:0.8;
   margin-left:20px;
-  margin-top:40px;
-  margin-bottom:20px;
-  color:#3f3d3c;
+  margin-right:20px;
 }
 .c {
   clear:both;
@@ -263,7 +268,7 @@ h4 {
     width:90%;
     position:relative;
     background-color:#ffffff;
-    padding:20px;
+    padding:15px;
     margin-top:5px;
     margin-bottom:5px;
     display:inline-block;

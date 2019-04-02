@@ -144,9 +144,9 @@
             <i class="section-headline__icon material-icons">code</i>{{ lang.projects }}
           </div>
 
-          <div class="section-content-grid">
+          <div class="section-content">
             <a v-for="(project, index) in person.projects" :key="index"
-              class="section-content__item-grid"
+              class="section-content__item"
               :href="project.url">
               <span class="section-content__header"> {{ project.name }} </span>
               <span class="section-content__subheader">{{ project.platform }}</span>
